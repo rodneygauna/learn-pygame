@@ -133,5 +133,5 @@ bin/
 pyvenv.cfg
 .DS_Store
 
-include/site/python3.10/pygame/
+include
 lib64
