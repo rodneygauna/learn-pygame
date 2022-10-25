@@ -1,12 +1,15 @@
 '''
-A duck shooter game following the Udemy course "An introduction to game development in python"
+A duck shooter game following the Udemy course
+"An introduction to game development in python"
 '''
 
 
 # -----------------------------------------------------------------------------
 # Imports
 # -----------------------------------------------------------------------------
-import pygame, sys, os
+import sys
+import os
+import pygame
 
 
 # -----------------------------------------------------------------------------
@@ -16,7 +19,7 @@ pygame.init()
 
 
 # -----------------------------------------------------------------------------
-# Global Variables
+# Display Dimensions and FPS
 # -----------------------------------------------------------------------------
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
@@ -42,37 +45,47 @@ crosshair_rect = crosshair.get_rect(center=(640, 360))
 duck_surface = pygame.image.load(
     os.path.join("duck_shooter/assets", "duck.png"))
 
-land_position_y = 560
-land_speed = 1
+LAND_POSITION_Y = 560
+LAND_SPEED = 1
 
-water_position_y = 640
-water_speed = 1.5
+WATER_POSITION_Y = 640
+WATER_SPEED = 1.5
 
 
+# -----------------------------------------------------------------------------
+# Pygame Game Loop
+# -----------------------------------------------------------------------------
 while True:
     for event in pygame.event.get():
+        # Close the window and kill the program when the X button is clicked
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        # Mouse movement control for the crosshair
         if event.type == pygame.MOUSEMOTION:
             crosshair_rect = crosshair.get_rect(center=event.pos)
             pygame.mouse.set_visible(False)
 
+    # Land animation and positioning
     screen.blit(wood_bg, (0, 0))
-    land_position_y -= land_speed
+    LAND_POSITION_Y -= LAND_SPEED
+    if LAND_POSITION_Y <= 520 or LAND_POSITION_Y >= 600:
+        LAND_SPEED *= -1
+    screen.blit(land_bg, (0, LAND_POSITION_Y))
 
-    if land_position_y <= 520 or land_position_y >= 600:
-        land_speed *= -1
-    screen.blit(land_bg, (0, land_position_y))
+    # Water animation and positioning
+    WATER_POSITION_Y += WATER_SPEED
+    if WATER_POSITION_Y <= 620 or WATER_POSITION_Y >= 680:
+        WATER_SPEED *= -1
+    screen.blit(water_bg, (0, WATER_POSITION_Y))
 
-    water_position_y += water_speed
-    if water_position_y <= 620 or water_position_y >= 680:
-        water_speed *= -1
-    screen.blit(water_bg, (0, water_position_y))
-
+    # Crosshair positioning
     screen.blit(crosshair, crosshair_rect)
+
+    # Cloud positioning
     screen.blit(cloud1, (100, 50))
     screen.blit(cloud2, (170, 80))
 
+    # Scenes will update on the display scene
     pygame.display.update()
     clock.tick(120)
