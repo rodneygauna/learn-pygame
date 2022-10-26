@@ -81,9 +81,10 @@ while True:
         # Mouse movement control for the crosshair
         if event.type == pygame.MOUSEMOTION:
             crosshair_rect = crosshair.get_rect(center=event.pos)
+        # Remove a duck if the mouse clicks on one
         if event.type == pygame.MOUSEBUTTONDOWN:
             for index, duck_rect in enumerate(DUCK_LIST):
-                if crosshair_rect.colliderect(duck_rect):
+                if duck_rect.collidepoint(event.pos):
                     del DUCK_LIST[index]
 
     # Land animation and positioning
