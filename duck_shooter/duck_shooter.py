@@ -17,7 +17,7 @@ import pygame
 # Pygame - Init
 # -----------------------------------------------------------------------------
 pygame.init()
-
+pygame.mouse.set_visible(False)
 
 # -----------------------------------------------------------------------------
 # Display Dimensions and FPS
@@ -74,7 +74,6 @@ for duck in range(20):
 # -----------------------------------------------------------------------------
 while True:
     for event in pygame.event.get():
-        pygame.mouse.set_visible(False)
         # Close the window and kill the program when the X button is clicked
         if event.type == pygame.QUIT:
             pygame.quit()
