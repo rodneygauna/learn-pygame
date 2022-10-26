@@ -15,12 +15,9 @@ import pygame
 # -----------------------------------------------------------------------------
 # Pygame - Initiate
 # -----------------------------------------------------------------------------
+# Initiate
 pygame.init()
 
-
-# -----------------------------------------------------------------------------
-# Global Variables
-# -----------------------------------------------------------------------------
 # Window Size
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
@@ -31,6 +28,10 @@ display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 # Window Label
 pygame.display.set_caption('Meteor Shooter - No Classes')
 
+
+# -----------------------------------------------------------------------------
+# Global Variables
+# -----------------------------------------------------------------------------
 # Import Images
 SHIP_SURF = pygame.image.load(
     os.path.join("astroid_shooter/assets", "ship.png")).convert_alpha()
