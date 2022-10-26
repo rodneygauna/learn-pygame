@@ -69,6 +69,7 @@ for duck in range(20):
 # -----------------------------------------------------------------------------
 while True:
     for event in pygame.event.get():
+        pygame.mouse.set_visible(False)
         # Close the window and kill the program when the X button is clicked
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -76,7 +77,10 @@ while True:
         # Mouse movement control for the crosshair
         if event.type == pygame.MOUSEMOTION:
             crosshair_rect = crosshair.get_rect(center=event.pos)
-            pygame.mouse.set_visible(False)
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            for index, duck_rect in enumerate(DUCK_LIST):
+                if crosshair_rect.colliderect(duck_rect):
+                    del DUCK_LIST[index]
 
     # Land animation and positioning
     screen.blit(wood_bg, (0, 0))
