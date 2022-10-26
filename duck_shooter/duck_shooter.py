@@ -46,6 +46,11 @@ crosshair_rect = crosshair.get_rect(center=(640, 360))
 duck_surface = pygame.image.load(
     os.path.join("duck_shooter/assets", "duck.png"))
 
+# Text
+GAME_FONT = pygame.font.Font(None, 60)
+TEXT_SURFACE = GAME_FONT.render('You Win!', True, (255, 255, 255))
+TEXT_RECT = TEXT_SURFACE.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
+
 # Land Variables
 LAND_POSITION_Y = 560
 LAND_SPEED = 1
@@ -98,6 +103,10 @@ while True:
     # Duck positioning
     for duck_rect in DUCK_LIST:
         screen.blit(duck_surface, duck_rect)
+
+    # You Won positioning
+    if len(DUCK_LIST) <= 0:
+        screen.blit(TEXT_SURFACE, TEXT_RECT)
 
     # Crosshair positioning
     screen.blit(crosshair, crosshair_rect)
