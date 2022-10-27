@@ -12,8 +12,7 @@ import sys
 from random import randint, uniform
 import pygame
 
-dir_path = os.getcwd()
-print(dir_path)
+
 # -----------------------------------------------------------------------------
 # Functions
 # -----------------------------------------------------------------------------
@@ -115,8 +114,8 @@ METEOR_TIMER = pygame.event.custom_type()
 pygame.time.set_timer(METEOR_TIMER, 500)
 
 # Sound Import
-# LASER_SOUND = pygame.mixer.Sound(
-    # os.path.join("astroid_shooter/assets", "laser.ogg"))
+LASER_SOUND = pygame.mixer.Sound(
+    os.path.join("astroid_shooter/assets", "laser.ogg"))
 EXPLOSION_SOUND = pygame.mixer.Sound(
     os.path.join("astroid_shooter/assets", "explosion.wav"))
 BACKGROUND_MUSIC = pygame.mixer.Sound(
