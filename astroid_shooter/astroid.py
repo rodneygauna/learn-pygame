@@ -7,12 +7,13 @@ Following the Udemy course "Learn Python by Making Games"
 # -----------------------------------------------------------------------------
 # Imports
 # -----------------------------------------------------------------------------
-import sys
 import os
-import pygame
+import sys
 from random import randint, uniform
+import pygame
 
-
+dir_path = os.getcwd()
+print(dir_path)
 # -----------------------------------------------------------------------------
 # Functions
 # -----------------------------------------------------------------------------
@@ -113,6 +114,16 @@ METEOR_LIST = []
 METEOR_TIMER = pygame.event.custom_type()
 pygame.time.set_timer(METEOR_TIMER, 500)
 
+# Sound Import
+# LASER_SOUND = pygame.mixer.Sound(
+    # os.path.join("astroid_shooter/assets", "laser.ogg"))
+EXPLOSION_SOUND = pygame.mixer.Sound(
+    os.path.join("astroid_shooter/assets", "explosion.wav"))
+BACKGROUND_MUSIC = pygame.mixer.Sound(
+    os.path.join("astroid_shooter/assets", "music.wave"))
+
+# Play the background music continuously
+BACKGROUND_MUSIC.play(loops=-1)
 
 # -----------------------------------------------------------------------------
 # Pygame
@@ -132,6 +143,8 @@ while True:
             # Once the laser fires, updates the variables
             CAN_SHOOT = False
             SHOOT_TIME = pygame.time.get_ticks()
+            # Play the laser sound
+            # LASER_SOUND.play()
         # Loops the meteor timer
         if event.type == METEOR_TIMER:
             # Creates a random position
@@ -159,6 +172,7 @@ while True:
     for meteor_tuple in METEOR_LIST:
         meteor_rect = meteor_tuple[0]
         if SHIP_RECT.colliderect(meteor_rect):
+            EXPLOSION_SOUND.play()
             pygame.quit()
             sys.exit()
 
@@ -168,6 +182,7 @@ while True:
             if laser_rect.colliderect(meteor_tuple[0]):
                 METEOR_LIST.remove(meteor_tuple)
                 LASER_LIST.remove(laser_rect)
+                EXPLOSION_SOUND.play()
 
     # Draw background
     display_surface.fill((0, 0, 0))
