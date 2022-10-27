@@ -16,22 +16,22 @@ from random import randint, uniform
 # -----------------------------------------------------------------------------
 # Functions
 # -----------------------------------------------------------------------------
-def laser_update(laser_list, speed=30):
+def laser_update(laser_list, speed=300):
     ''' Controls the speed of the laser '''
     for rect in laser_list:
         rect.top -= speed * dt
         if rect.bottom < 0:
-            LASER_LIST.remove(rect)
+            laser_list.remove(rect)
 
 
 def meteor_update(meteor_list, speed=300):
     ''' Controls the speed and direction of the meteors'''
     for meteor_tuple in meteor_list:
         direction = meteor_tuple[1]
-        meteor_rect = meteor_tuple[0]
-        meteor_rect.center += direction * speed * dt
-        if meteor_rect.top > WINDOW_HEIGHT:
-            METEOR_LIST.remove(meteor_tuple)
+        rect = meteor_tuple[0]
+        rect.center += direction * speed * dt
+        if rect.top > WINDOW_HEIGHT:
+            meteor_list.remove(meteor_tuple)
 
 
 def display_score():
@@ -138,11 +138,11 @@ while True:
             x_pos = randint(-100, WINDOW_WIDTH + 100)
             y_pos = randint(-100, 50)
             # Creates a meteor
-            meteor_rect = METEOR_SURF.get_rect(center=(x_pos, y_pos))
+            rect = METEOR_SURF.get_rect(center=(x_pos, y_pos))
             # Creates a random direction
             direction = pygame.math.Vector2(uniform(-0.5, 0.5), 1)
             # Adds a meteor to the list
-            METEOR_LIST.append((meteor_rect, direction))
+            METEOR_LIST.append((rect, direction))
 
     # Framerate limit
     dt = clock.tick(120) / 1000
@@ -158,9 +158,6 @@ while True:
     # Draw background
     display_surface.fill((0, 0, 0))
     display_surface.blit(BG_SURF, (0, 0))
-
-    # Draw Text
-    display_surface.blit(TEXT_SURF, (500, 200))
 
     # Display the Score
     display_score()
