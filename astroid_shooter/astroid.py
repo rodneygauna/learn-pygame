@@ -155,6 +155,20 @@ while True:
     meteor_update(METEOR_LIST)
     CAN_SHOOT = laser_timer(CAN_SHOOT)
 
+    # Check for meteor and ship overlap
+    for meteor_tuple in METEOR_LIST:
+        meteor_rect = meteor_tuple[0]
+        if SHIP_RECT.colliderect(meteor_rect):
+            pygame.quit()
+            sys.exit()
+
+    # Check if laser and meteor overlap
+    for laser_rect in LASER_LIST:
+        for meteor_tuple in METEOR_LIST:
+            if laser_rect.colliderect(meteor_tuple[0]):
+                METEOR_LIST.remove(meteor_tuple)
+                LASER_LIST.remove(laser_rect)
+
     # Draw background
     display_surface.fill((0, 0, 0))
     display_surface.blit(BG_SURF, (0, 0))
