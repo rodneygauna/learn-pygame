@@ -119,7 +119,7 @@ LASER_SOUND = pygame.mixer.Sound(
 EXPLOSION_SOUND = pygame.mixer.Sound(
     os.path.join("astroid_shooter/assets", "explosion.wav"))
 BACKGROUND_MUSIC = pygame.mixer.Sound(
-    os.path.join("astroid_shooter/assets", "music.wave"))
+    os.path.join("astroid_shooter/assets", "music.wav"))
 
 # Play the background music continuously
 BACKGROUND_MUSIC.play(loops=-1)
