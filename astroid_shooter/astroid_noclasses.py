@@ -113,7 +113,7 @@ METEOR_LIST = []
 METEOR_TIMER = pygame.event.custom_type()
 pygame.time.set_timer(METEOR_TIMER, 500)
 
-# Sound Import
+""" # Sound Import
 LASER_SOUND = pygame.mixer.Sound(
     os.path.join("astroid_shooter/assets", "laser.ogg"))
 EXPLOSION_SOUND = pygame.mixer.Sound(
@@ -122,7 +122,7 @@ BACKGROUND_MUSIC = pygame.mixer.Sound(
     os.path.join("astroid_shooter/assets", "music.wav"))
 
 # Play the background music continuously
-BACKGROUND_MUSIC.play(loops=-1)
+BACKGROUND_MUSIC.play(loops=-1) """
 
 # -----------------------------------------------------------------------------
 # Pygame
@@ -171,7 +171,7 @@ while True:
     for meteor_tuple in METEOR_LIST:
         meteor_rect = meteor_tuple[0]
         if SHIP_RECT.colliderect(meteor_rect):
-            EXPLOSION_SOUND.play()
+            # EXPLOSION_SOUND.play()
             pygame.quit()
             sys.exit()
 
@@ -181,7 +181,7 @@ while True:
             if laser_rect.colliderect(meteor_tuple[0]):
                 METEOR_LIST.remove(meteor_tuple)
                 LASER_LIST.remove(laser_rect)
-                EXPLOSION_SOUND.play()
+                # EXPLOSION_SOUND.play()
 
     # Draw background
     display_surface.fill((0, 0, 0))
