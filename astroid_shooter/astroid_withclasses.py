@@ -115,7 +115,9 @@ class Meteor(pygame.sprite.Sprite):
 class Score:
     ''' Game score class '''
     def __init__(self):
-        self.font = pygame.font.Font('astroid_shooter/assets/subatomic.ttf', 50)
+        self.font = pygame.font.Font(
+            'astroid_shooter/assets/subatomic.ttf', 50
+            )
 
     def display(self):
         ''' Displays the score '''
@@ -131,6 +133,7 @@ class Score:
                          width=8,
                          border_radius=5
                          )
+
 
 # -----------------------------------------------------------------------------
 # Pygame - Initiate
